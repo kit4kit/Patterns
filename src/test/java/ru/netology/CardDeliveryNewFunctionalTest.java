@@ -1,20 +1,14 @@
 package ru.netology;
-import com.codeborne.selenide.ElementsCollection;
-import lombok.val;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
-import ru.netology.DataGenerator;
-import ru.netology.RegistrationByCardInfo;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.$$;
+
 
 public class CardDeliveryNewFunctionalTest {
 
@@ -24,7 +18,7 @@ public class CardDeliveryNewFunctionalTest {
     }
 
     @Test
-    void shouldCardDeliveryOnDiffrentDate() {
+    void shouldCardDeliveryOnDifferentDate() {
         $("[data-test-id=city] input").setValue(DataGenerator.Registration.generateByCard().getCity());
         $("[data-test-id=date] input").sendKeys(Keys.CONTROL+"A"+Keys.DELETE);
         $("[data-test-id=date] input").setValue(DataGenerator.Registration.getDayVisit(3));
