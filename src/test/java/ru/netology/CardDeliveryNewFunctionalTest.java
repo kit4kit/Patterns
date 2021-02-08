@@ -1,8 +1,11 @@
 package ru.netology;
 
+import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
@@ -32,9 +35,9 @@ public class CardDeliveryNewFunctionalTest {
         $("[data-test-id=date] input").sendKeys(Keys.CONTROL+"A"+Keys.DELETE);
         $("[data-test-id=date] input").setValue(DataGenerator.Registration.getDayVisit(7));
         $("button.button").click();
-        $(withText("Необходимо подтверждение")).waitUntil(visible,15000);
+        $(withText("Необходимо подтверждение")).shouldBe(Condition.visible, Duration.ofMillis(15000));
         $("[data-test-id=replan-notification] .button").click();
-        $(withText("Успешно!")).waitUntil(visible,15000);
+        $(withText("Успешно!")).shouldBe(Condition.visible, Duration.ofMillis(15000));
         $("[data-test-id=success-notification] .notification__content").shouldHave(exactText("Встреча " +
                 "успешно запланирована на "+DataGenerator.Registration.getDayVisit(7)));
     }
